@@ -13,9 +13,10 @@ RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
 RUN tar xzf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz
 RUN chmod +x steamcmd.sh
 
+# Uncomment for debugging:
 #USER root
 #RUN apt-get install -y gdb
 #USER tf2server
 
-COPY install.sh start.sh ./
-CMD ["./start.sh"]
+COPY server.sh .
+CMD ["./server.sh"]
