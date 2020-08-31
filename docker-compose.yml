@@ -1,0 +1,7 @@
+version: "3"
+services:
+        tf2:
+                build: .
+                network_mode: host
+                volumes:
+                        - ./data:/home/tf2server/server
