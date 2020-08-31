@@ -2,10 +2,19 @@
 
 set -e
 
+function download_server() {
+    ./steamcmd.sh +login anonymous +force_install_dir ./server +app_update 232250 +quit
+}
+
 # Download the game assets if needed.
 if [[ -z "$(ls -A server/)" ]]; then
     echo ">> Downloading server..."
-    ./steamcmd.sh +login anonymous +force_install_dir ./server +app_update 232250 +quit
+    download_server
+elif [[ "$NO_UPDATE" != "1" ]]; then
+    echo ">> Checking for updates..."
+    download_server
+else
+    echo ">> Updates disabled, skipping..."
 fi
 
 opts="-console -game tf -timeout 3"
