@@ -17,19 +17,22 @@ else
     echo ">> Updates disabled, skipping..."
 fi
 
-opts="-console -game tf -timeout 3"
+opts="-game tf -timeout 3"
 
 opts="$opts +ip ${IP:-0.0.0.0}"
 opts="$opts -port ${PORT:-27015}"
 opts="$opts +map ${START_MAP:-ctf_2fort}"
 opts="$opts +maxplayers ${MAX_PLAYERS:-16}"
 
+# Included both because I'm not sure which is used and which isn't.
 if [[ "${VAC:-1}" == "1" ]]; then
     opts="$opts -secured"
+else
+    opts="$opts -insecure"
 fi
 
 # NOTE: Uncomment out the debugging section in the Dockerfile, otherwise
-# the debugger won't be installed. 
+# the debugger won't be installed.
 if [[ "$DEBUG" == "1" ]]; then
     opts="$opts -debug"
 fi
