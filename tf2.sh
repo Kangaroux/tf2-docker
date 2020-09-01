@@ -13,33 +13,44 @@ function create_data_dir() {
     fi
 }
 
+function dock() {
+    docker-compose -p tf2-docker -f docker/docker-compose.base.yml "$@"
+}
+
+function dock_daemon() {
+    dock -f docker/docker-compose.daemon.yml "$@"
+}
+
 function console() {
-    dock exec tf2 "screen -x -r tf2"
+    echo "To leave the console press CTRL-A then D."
+    echo "CTRL-C will shutdown the server."
+    echo
+    echo "If you accidentally shutdown the server, run '$0 restart'"
+    echo
+    echo "Press [Enter] to continue..."
+    read
+    dock_daemon exec tf2 screen -x tf2
 }
 
 function daemon() {
-    dock -f docker/docker-compose.daemon.yml up -d
-}
-
-function dock() {
-    docker-compose -f docker/docker-compose.base.yml $@
-}
-
-function logs() {
-    dock logs -f
+    create_data_dir
+    dock_daemon up -d --build
 }
 
 function restart() {
-    dock restart
+    # The container must be explicitly stopped to prevent an issue with the screen
+    # process staying alive.
+    stop
+    daemon
 }
 
 function start() {
     create_data_dir
-    dock up --build "$@"
+    dock up --build
 }
 
 function stop() {
-    dock stop
+    dock_daemon stop
 }
 
 function usage() {
@@ -51,13 +62,9 @@ function usage() {
     echo "    r, restart      Restarts the server (daemon only)"
     echo "    c, console      Attaches to the server console for entering commands (daemon only)"
     echo "    stop            Stops the server (daemon only)"
-    echo "    logs            Shows the server log (daemon only)"
 }
 
 case "$1" in
-"logs")
-    logs
-    ;;
 "r" | "restart")
     restart
     ;;

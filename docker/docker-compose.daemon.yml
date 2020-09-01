@@ -1,4 +1,5 @@
 version: "3"
 services:
     tf2:
-        command: "screen -m -S tf2 ./server.sh"
+        command: screen -m -S tf2 ./server.sh
+        tty: true

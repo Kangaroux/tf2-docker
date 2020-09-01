@@ -6,4 +6,3 @@ services:
         network_mode: host
         volumes:
             - ../data:/home/tf2server/server
-        tty: true

@@ -8,6 +8,20 @@ Run `./tf2.sh` to download and start the server. Once the download has completed
 
 The server files are in a `data/` directory. You'll probably want `data/tf/` which has things like `cfg`, `maps`, etc.
 
+## Accessing the Console
+```bash
+./tf2.sh daemon
+./tf2.sh console
+
+# Or
+./tf2.sh d
+./tf2.sh c
+```
+
+This starts the server in daemon-mode and then attaches to the process in the container. Once attached you can type in console commands, such as `sm version` if you have SourceMod installed.
+
+**NOTE:** Because you are attaching directly to the server process, if you press `CTRL-C` it will exit the server. To detach, press `CTRL-A, D`.
+
 ## Server Configuration
 You can customize the server startup options with a `server.env` file. These are command line options used by SRCDS. For a full list of possible options see the [wiki page](https://developer.valvesoftware.com/wiki/Command_Line_Options#Source_Dedicated_Server).
 

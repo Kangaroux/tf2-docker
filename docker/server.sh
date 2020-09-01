@@ -49,7 +49,7 @@ opts="$opts +sv_setsteamaccount ${SERVER_TOKEN}"
 # Make sure steamclient.so is linked before starting the server.
 if [[ ! -e "~/.steam/sdk32/steamclient.so" ]]; then
     mkdir -p ~/.steam/sdk32
-    ln -s ~/server/bin/steamclient.so ~/.steam/sdk32/
+    ln -f -s ~/server/bin/steamclient.so ~/.steam/sdk32/
 fi
 
 echo ">> Starting server..."
