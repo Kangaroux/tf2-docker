@@ -49,3 +49,6 @@ You can customize the server startup options with a `server.env` file. These are
 	- Add `DEBUG=1` to `server.env`
 	- Run `./tf2.sh`
 	- Once you've solved the issue you can re-comment the debug section in the Dockerfile
+- **"There is no screen to be attached matching tf2." error when running `./tf2.sh console`**
+    - This usually means you pressed `CTRL-C` while attached in a previous console session and killed the server.
+    - Run `./tf2.sh restart`
