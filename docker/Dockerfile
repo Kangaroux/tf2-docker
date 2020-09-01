@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 RUN dpkg --add-architecture i386
 RUN apt-get update
-RUN apt-get install -y wget lib32z1 libncurses5:i386 libbz2-1.0:i386 lib32gcc1 lib32stdc++6 libtinfo5:i386 libcurl3-gnutls:i386
+RUN apt-get install -y wget lib32z1 libncurses5:i386 libbz2-1.0:i386 lib32gcc1 lib32stdc++6 libtinfo5:i386 libcurl3-gnutls:i386 screen
 
 RUN useradd -m tf2server
 USER tf2server
@@ -19,4 +19,4 @@ RUN chmod +x steamcmd.sh
 #USER tf2server
 
 COPY server.sh .
-CMD ["./server.sh"]
+CMD screen -m -S tf2 ./server.sh

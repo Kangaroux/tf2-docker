@@ -13,8 +13,12 @@ function create_data_dir() {
     fi
 }
 
+function console() {
+    dock exec tf2 "screen -x -r tf2"
+}
+
 function dock() {
-    docker-compose -f docker/docker-compose.yml "$@"
+    docker-compose -f docker/docker-compose.yml $@
 }
 
 function logs() {
@@ -41,6 +45,7 @@ function usage() {
     echo "    s, start        Starts the server"
     echo "    d, daemon       Starts the server as a daemon (in the background)"
     echo "    r, restart      Restarts the server (daemon only)"
+    echo "    c, console      Attaches to the server console for entering commands (daemon only)"
     echo "    stop            Stops the server (daemon only)"
     echo "    logs            Shows the server log (daemon only)"
 }
@@ -57,6 +62,9 @@ case "$1" in
     ;;
 "d" | "daemon")
     start -d
+    ;;
+"c" | "console")
+    console
     ;;
 "stop")
     stop
