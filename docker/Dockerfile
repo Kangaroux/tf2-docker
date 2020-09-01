@@ -19,4 +19,4 @@ RUN chmod +x steamcmd.sh
 #USER tf2server
 
 COPY server.sh .
-CMD screen -m -S tf2 ./server.sh
+CMD ./server.sh

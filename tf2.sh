@@ -17,8 +17,12 @@ function console() {
     dock exec tf2 "screen -x -r tf2"
 }
 
+function daemon() {
+    dock -f docker/docker-compose.daemon.yml up -d
+}
+
 function dock() {
-    docker-compose -f docker/docker-compose.yml $@
+    docker-compose -f docker/docker-compose.base.yml $@
 }
 
 function logs() {
@@ -61,7 +65,7 @@ case "$1" in
     start
     ;;
 "d" | "daemon")
-    start -d
+    daemon
     ;;
 "c" | "console")
     console
