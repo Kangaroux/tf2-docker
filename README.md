@@ -2,11 +2,11 @@
 This repo contains a Docker setup for automatically downloading, updating, and running a TF2 server.
 
 ## Quickstart
-The first thing you should do is to run the server as-is to make sure it's working properly.
+Start by running `touch server.env`. You can leave this file blank for now.
 
 Run `./tf2.sh` to download and start the server. Once the download has completed, you should see the message ` >> Starting server`. If you're running this on your local machine you should also see the server appear under the LAN tab of the server browser.
 
-The server files are in a `data/` directory. You'll probably want `data/tf/` which has things like `cfg`, `maps`, etc.
+The server volume is mounted to `data/`. You'll probably want `data/tf/` which has things like `cfg`, `maps`, etc.
 
 ## Accessing the Console
 ```bash
